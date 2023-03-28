@@ -1,62 +1,42 @@
 package exercice2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bank {
-    private String name;
-    private Account[] accounts;
+    private List<Account> accounts;
 
-    public Bank(String name, Account[] accounts) {
-        this.name = name;
-        this.accounts = accounts;
+    public Bank() {
+        this.accounts = new ArrayList<Account>();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Account[] getAccounts() {
+    public List<Account> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Account[] accounts) {
-        this.accounts = accounts;
-    }
-
     public void addAccount(Account account) {
-        Account[] newAccounts = new Account[this.accounts.length + 1];
-        for (int i = 0; i < this.accounts.length; i++) {
-            newAccounts[i] = this.accounts[i];
-        }
-        newAccounts[this.accounts.length] = account;
-        this.accounts = newAccounts;
+        this.accounts.add(account);
     }
 
     public void removeAccount(Account account) {
-        Account[] newAccounts = new Account[this.accounts.length - 1];
-        int j = 0;
-        for (int i = 0; i < this.accounts.length; i++) {
-            if (this.accounts[i] != account) {
-                newAccounts[j] = this.accounts[i];
-                j++;
-            }
-        }
-        this.accounts = newAccounts;
+        this.accounts.remove(account);
     }
 
-    public void showAccounts() {
-        for (int i = 0; i < this.accounts.length; i++) {
-            System.out.println("Account " + (i + 1) + ":");
-            System.out.println("ID: " + this.accounts[i].getId());
-            System.out.println("Solde: " + this.accounts[i].getSolde());
-            System.out.println("Taux: " + this.accounts[i].getTaux());
-            System.out.println();
+    public void showAccount(int index) {
+        System.out.println("Account " + (index + 1) + ":");
+        System.out.println("ID: " + this.accounts.get(index).getId());
+        System.out.println("Solde: " + this.accounts.get(index).getSolde());
+        System.out.println("Taux: " + this.accounts.get(index).getTaux());
+        System.out.println();
+    }
+
+    public void showAllAccounts() {
+        for (int i = 0; i < this.accounts.size(); i++) {
+            this.showAccount(i);
         }
     }
 
-    public void transfer(Account account1, Account account2, double montant) {
-        account1.transfer(account2, montant);
+    public void transferer(int index1, int index2, double montant) {
+        this.accounts.get(index1).transfer(this.accounts.get(index2), montant);
     }
 }

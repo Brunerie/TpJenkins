@@ -48,6 +48,9 @@ public class Account {
         account.depot(montant);
     }
 
+    public void afficher() {
+        System.out.println("Account " + this.id + " : " + this.solde);
+    }
     public void calculInteret() {
         this.solde += this.solde * this.taux;
     }
