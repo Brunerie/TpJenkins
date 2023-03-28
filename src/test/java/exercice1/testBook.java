@@ -1,3 +1,5 @@
+package exercice1;
+
 import exercice1.Book;
 
 public class testBook {
